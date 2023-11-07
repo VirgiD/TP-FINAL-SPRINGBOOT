@@ -1,4 +1,4 @@
 package com.ar.cac.homebanking.controllers;
 
-public class AcountController {
+public class AccountController {
 }

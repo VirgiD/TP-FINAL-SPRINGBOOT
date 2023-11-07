@@ -1,4 +1,4 @@
 package com.ar.cac.homebanking.models.dtos;
 
-public class AcountDTO {
+public class AccountDTO {
 }
