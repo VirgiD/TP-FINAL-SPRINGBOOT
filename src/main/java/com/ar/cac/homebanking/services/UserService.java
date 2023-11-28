@@ -30,7 +30,6 @@ public class UserService {
         return usersDtos;
     }
 
-
         public UserDTO getUserById(Long id) {
           User entity= repository.findById(id).get();
           return UserMapper.userToDto(entity);
@@ -46,9 +45,6 @@ public class UserService {
         }
 
     }
-
-
-
 
     public UserDTO updateUser(Long id, UserDTO dto) {
         if (repository.existsById(id)){
@@ -85,15 +81,18 @@ public class UserService {
     }
     
         // Validar que existan usuarios unicos por mail
-
-
     public User validateUserByEmail(UserDTO dto){
-        return repository.findByEmail(dto.getEmail());
+        if(repository.findByEmail(dto.getEmail())){
+            return null;
+        }else{
+            User user = repository.save(UserMapper.dtoToUser(dto));
+             return user;
+        }
     }
 
-
+//TODO: refactor en exception
     public String deleteUser(Long id) {
-        if (repository.existsById(id)){
+        if (repository.existsById(id)) {
             repository.deleteById(id);
             return "El usuario con id: " + id + " ha sido eliminado";
         } else {
@@ -101,6 +100,7 @@ public class UserService {
         }
 
     }
+
 }
 
 

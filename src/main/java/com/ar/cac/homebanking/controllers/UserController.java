@@ -53,15 +53,17 @@ public class UserController {
       return ResponseEntity.status(HttpStatus.CREATED).body(service.createUser(user));
 
     }
-@PutMapping(value="/{id}")
-    public void updateAllUser(){
+    @PutMapping(value="/{id}")
+    public ResponseEntity<UserDTO>updateUser(@PathVariable Long id, @RequestBody UserDTO user){
+      return ResponseEntity.status(HttpStatus.OK).body(service.updateUser(id, user));
         //modificar al usuario por completo
 
     }
-@PatchMapping(value="/{id}")
-    public void updateUser(@PathVariable long id){
+/*@PatchMapping(value="/{id}")
+    public ResponseEntity<UserDTO>updatePatchUser(@PathVariable Long id, @RequestBody UserDTO user){
+    return ResponseEntity.status(HttpStatus.OK).body(service.updateUser(id, user));
         //modificar al usuario parcialmente
-    }
+    }*/
 
 @DeleteMapping(value="/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
